@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Douglas Pimentel — Engenheiro de Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080810;
+  --surface:#0f0f1a;
+  --surface2:#161625;
+  --surface3:#1e1e30;
+  --border:#252538;
+  --border2:#2f2f4a;
+  --purple:#7c6af7;
+  --purple-light:#a594f9;
+  --purple-dim:rgba(124,106,247,0.12);
+  --teal:#2dd4bf;
+  --teal-dim:rgba(45,212,191,0.1);
+  --coral:#f97066;
+  --coral-dim:rgba(249,112,102,0.1);
+  --amber:#f59e0b;
+  --amber-dim:rgba(245,158,11,0.1);
+  --green:#4ade80;
+  --green-dim:rgba(74,222,128,0.1);
+  --blue:#60a5fa;
+  --blue-dim:rgba(96,165,250,0.1);
+  --pink:#e879f9;
+  --pink-dim:rgba(232,121,249,0.1);
+  --text:#ede9ff;
+  --muted:#8b87a8;
+  --faint:#4a4768;
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Outfit',sans-serif;font-size:15px;line-height:1.6;
+  overflow-x:hidden;
+}
+a{color:var(--purple-light);text-decoration:none}
+
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(124,106,247,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,106,247,0.025) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
+.orb1{width:clamp(200px,40vw,500px);height:clamp(200px,40vw,500px);background:rgba(124,106,247,0.07);top:-80px;right:-80px}
+.orb2{width:clamp(180px,35vw,400px);height:clamp(180px,35vw,400px);background:rgba(45,212,191,0.05);bottom:10%;left:-100px}
+.orb3{width:clamp(150px,25vw,300px);height:clamp(150px,25vw,300px);background:rgba(249,112,102,0.04);top:50%;left:40%}
+
+.container{max-width:860px;margin:0 auto;padding:0 clamp(16px,4vw,32px);position:relative;z-index:1}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,8,16,0.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:14px 0;
+}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.nav-logo{
+  font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;
+  background:linear-gradient(90deg,var(--purple-light),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  flex-shrink:0;
+}
+.nav-links{display:flex;gap:clamp(12px,3vw,28px);flex-wrap:wrap}
+.nav-links a{font-size:13px;color:var(--muted);transition:color 0.2s;white-space:nowrap}
+.nav-links a:hover{color:var(--text)}
+
+/* hamburger - mobile only */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-menu{
+  display:none;position:fixed;top:53px;left:0;right:0;z-index:99;
+  background:rgba(8,8,16,0.97);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:20px 24px;flex-direction:column;gap:18px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:16px;color:var(--muted);transition:color 0.2s}
+.mobile-menu a:hover{color:var(--text)}
+
+/* HERO */
+.hero{padding:clamp(56px,10vw,96px) 0 clamp(48px,8vw,72px)}
+.hero-label{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:999px;padding:7px 16px;
+  font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);
+  margin-bottom:clamp(20px,4vw,32px);letter-spacing:0.04em;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;
+  animation:pulse 2s infinite}
+@keyframes pulse{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,0.5)}
+  50%{opacity:0.6;box-shadow:0 0 0 7px rgba(74,222,128,0)}
+}
+
+h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(36px,8vw,68px);
+  line-height:1.05;letter-spacing:-0.025em;
+  margin-bottom:clamp(16px,3vw,24px);
+}
+h1 .name{display:block;color:var(--text)}
+h1 em{
+  display:block;font-style:italic;
+  background:linear-gradient(135deg,var(--purple-light) 0%,var(--teal) 50%,var(--coral) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.hero-sub{
+  font-size:clamp(15px,2.5vw,17px);color:var(--muted);
+  max-width:540px;line-height:1.75;
+  margin-bottom:clamp(24px,5vw,38px);
+}
+.hero-sub strong{color:var(--text);font-weight:500}
+
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:clamp(32px,6vw,48px)}
+.btn-primary{
+  background:linear-gradient(135deg,var(--purple),#5b4fc0);
+  color:#fff;padding:clamp(10px,2vw,13px) clamp(20px,4vw,28px);
+  border-radius:10px;font-size:clamp(13px,2vw,15px);font-weight:500;
+  border:none;cursor:pointer;transition:opacity 0.2s,transform 0.15s;
+  box-shadow:0 0 28px rgba(124,106,247,0.3);
+}
+.btn-primary:hover{opacity:0.88;transform:translateY(-2px)}
+.btn-ghost{
+  background:var(--surface2);color:var(--text);
+  padding:clamp(10px,2vw,13px) clamp(20px,4vw,28px);
+  border-radius:10px;font-size:clamp(13px,2vw,15px);font-weight:500;
+  border:1px solid var(--border2);cursor:pointer;
+  transition:border-color 0.2s,transform 0.15s,background 0.2s;
+}
+.btn-ghost:hover{border-color:var(--purple);background:var(--surface3);transform:translateY(-2px)}
+
+.stack-grid{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-family:'DM Mono',monospace;font-size:clamp(11px,1.5vw,13px);
+  border-radius:7px;padding:5px 12px;border:1px solid;
+  transition:transform 0.15s;cursor:default;
+}
+.tag:hover{transform:translateY(-2px)}
+.tag.purple{background:var(--purple-dim);border-color:rgba(124,106,247,0.3);color:var(--purple-light)}
+.tag.teal{background:var(--teal-dim);border-color:rgba(45,212,191,0.25);color:var(--teal)}
+.tag.coral{background:var(--coral-dim);border-color:rgba(249,112,102,0.25);color:var(--coral)}
+.tag.amber{background:var(--amber-dim);border-color:rgba(245,158,11,0.25);color:var(--amber)}
+.tag.blue{background:var(--blue-dim);border-color:rgba(96,165,250,0.25);color:var(--blue)}
+.tag.pink{background:var(--pink-dim);border-color:rgba(232,121,249,0.25);color:var(--pink)}
+.tag.green{background:var(--green-dim);border-color:rgba(74,222,128,0.25);color:var(--green)}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+
+/* SECTIONS */
+section{padding:clamp(48px,8vw,72px) 0}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:12px;
+}
+.sec-eyebrow::before{content:'';display:block;width:20px;height:1px;background:var(--faint)}
+h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(26px,5vw,36px);letter-spacing:-0.015em;margin-bottom:10px;
+}
+.sec-sub{color:var(--muted);font-size:15px;margin-bottom:clamp(28px,5vw,44px);max-width:480px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.about-grid{grid-template-columns:1fr}}
+
+.about-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:clamp(18px,3vw,26px);
+  position:relative;overflow:hidden;transition:border-color 0.3s;
+}
+.about-card::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;pointer-events:none;
+}
+.about-card:nth-child(1)::before{background:linear-gradient(135deg,var(--purple-dim),transparent)}
+.about-card:nth-child(2)::before{background:linear-gradient(135deg,var(--teal-dim),transparent)}
+.about-card:hover::before{opacity:1}
+.about-card:nth-child(1):hover{border-color:rgba(124,106,247,0.35)}
+.about-card:nth-child(2):hover{border-color:rgba(45,212,191,0.3)}
+
+.card-icon{
+  width:36px;height:36px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;margin-bottom:14px;
+}
+.icon-purple{background:var(--purple-dim)}
+.icon-teal{background:var(--teal-dim)}
+.about-card h3{font-size:14px;font-weight:500;margin-bottom:10px;color:var(--text)}
+.about-card p{font-size:14px;color:var(--muted);line-height:1.7}
+.about-card ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.about-card li{font-size:13px;color:var(--muted);display:flex;align-items:baseline;gap:10px}
+.about-card li::before{content:'›';color:var(--purple);flex-shrink:0;font-size:15px}
+
+/* PROJECTS */
+.projects{display:flex;flex-direction:column;gap:14px}
+.project-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:clamp(20px,4vw,30px);
+  transition:border-color 0.25s,transform 0.2s;
+  position:relative;overflow:hidden;
+}
+.project-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  opacity:0;transition:opacity 0.3s;
+}
+.project-card.p-purple::after{background:linear-gradient(90deg,var(--purple),var(--purple-light))}
+.project-card.p-teal::after{background:linear-gradient(90deg,var(--teal),#5eead4)}
+.project-card.p-coral::after{background:linear-gradient(90deg,var(--coral),#fda4af)}
+.project-card:hover{transform:translateY(-3px)}
+.project-card.p-purple:hover{border-color:rgba(124,106,247,0.45)}
+.project-card.p-teal:hover{border-color:rgba(45,212,191,0.4)}
+.project-card.p-coral:hover{border-color:rgba(249,112,102,0.4)}
+.project-card:hover::after{opacity:1}
+
+.project-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:12px;gap:12px;
+  flex-wrap:wrap;
+}
+.project-title{font-size:clamp(16px,3vw,18px);font-weight:600;letter-spacing:-0.01em;line-height:1.3}
+.project-badge{
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:5px 12px;border-radius:6px;flex-shrink:0;
+  border:1px solid;white-space:nowrap;transition:transform 0.15s;
+}
+.project-badge:hover{transform:scale(1.04)}
+.badge-purple{background:var(--purple-dim);border-color:rgba(124,106,247,0.3);color:var(--purple-light)}
+.badge-teal{background:var(--teal-dim);border-color:rgba(45,212,191,0.25);color:var(--teal)}
+.badge-coral{background:var(--coral-dim);border-color:rgba(249,112,102,0.25);color:var(--coral)}
+
+.project-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.project-tags{display:flex;flex-wrap:wrap;gap:7px}
+.ptag{
+  font-family:'DM Mono',monospace;font-size:11px;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--faint);padding:4px 10px;border-radius:5px;
+}
+
+/* CONTACT */
+.contact-wrap{
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:20px;padding:clamp(32px,6vw,52px) clamp(20px,5vw,44px);
+  text-align:center;position:relative;overflow:hidden;
+}
+.contact-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(124,106,247,0.08),transparent 70%);
+  pointer-events:none;
+}
+.contact-wrap h3{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(22px,4vw,34px);
+  margin-bottom:12px;letter-spacing:-0.015em;position:relative;
+}
+.contact-wrap p{color:var(--muted);margin-bottom:28px;font-size:15px;position:relative}
+.contact-links{
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:relative;
+}
+.contact-link{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--surface2);border:1px solid var(--border2);
+  color:var(--text);padding:clamp(9px,2vw,12px) clamp(14px,3vw,22px);
+  border-radius:10px;font-size:clamp(13px,2vw,14px);
+  transition:border-color 0.2s,color 0.2s,transform 0.15s,background 0.2s;
+}
+.contact-link:hover{transform:translateY(-2px);background:var(--surface3)}
+.contact-link.cl-purple:hover{border-color:rgba(124,106,247,0.5);color:var(--purple-light)}
+.contact-link.cl-blue:hover{border-color:rgba(96,165,250,0.5);color:var(--blue)}
+.contact-link.cl-gray:hover{border-color:var(--border2);color:var(--teal)}
+.contact-link.cl-green:hover{border-color:rgba(74,222,128,0.4);color:var(--green)}
+.contact-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+
+footer{
+  padding:28px 0;border-top:1px solid var(--border);
+  text-align:center;position:relative;z-index:1;
+}
+footer p{font-family:'DM Mono',monospace;font-size:12px;color:var(--faint)}
+footer span{color:var(--purple);margin:0 4px}
+
+/* TABLET */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-sub{max-width:100%}
+  .sec-sub{max-width:100%}
+}
+
+/* MOBILE */
+@media(max-width:480px){
+  .hero-actions{flex-direction:column}
+  .btn-primary,.btn-ghost{width:100%;text-align:center}
+  .contact-links{flex-direction:column;align-items:stretch}
+  .contact-link{justify-content:center}
+  .project-header{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<nav>
+  <div class="container nav-inner">
+    <span class="nav-logo">douglas.dev</span>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+      <a href="curriculo/Currículo --- Jose Douglas Pimentel Rodrigues.pdf" target="_blank">Currículo</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#sobre" onclick="closeMenu()">Sobre</a>
+  <a href="#projetos" onclick="closeMenu()">Projetos</a>
+  <a href="#contato" onclick="closeMenu()">Contato</a>
+  <a href="curriculo/Currículo --- Jose Douglas Pimentel Rodrigues.pdf" target="_blank" onclick="closeMenu()">Currículo ↗</a>
+</div>
+
+<div class="container">
+
+  <section class="hero" style="border:none">
+    <div class="hero-label">
+      <span class="dot"></span>
+      Disponível para oportunidades
+    </div>
+    <h1>
+      <span class="name">Douglas Pimentel</span>
+      <em>Engenheiro de Software</em>
+    </h1>
+    <p class="hero-sub">
+      Estudante de <strong>Engenharia de Software</strong> pela Uninter, com foco em
+      backend, APIs REST e arquitetura de sistemas. Construo soluções com
+      <strong>Java, Python e React</strong> aplicando boas práticas e cultura DevOps.
+    </p>
+    <div class="hero-actions">
+      <a href="#contato"><button class="btn-primary">Entrar em contato</button></a>
+      <a href="curriculo/Currículo --- Jose Douglas Pimentel Rodrigues.pdf" target="_blank"><button class="btn-ghost">Ver currículo ↗</button></a>
+    </div>
+    <div class="stack-grid">
+      <span class="tag purple">Java</span>
+      <span class="tag purple">Python</span>
+      <span class="tag teal">React</span>
+      <span class="tag teal">TypeScript</span>
+      <span class="tag teal">Next.js</span>
+      <span class="tag blue">REST APIs</span>
+      <span class="tag blue">SQL / NoSQL</span>
+      <span class="tag coral">Docker</span>
+      <span class="tag amber">Linux</span>
+      <span class="tag green">Git</span>
+      <span class="tag pink">Kotlin</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="sobre">
+    <p class="sec-eyebrow">sobre mim</p>
+    <h2>Quem sou eu</h2>
+    <p class="sec-sub">28 anos, Varginha — MG. Cursando Engenharia de Software com conclusão prevista em 2027.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="card-icon icon-purple">🎓</div>
+        <h3>Formação</h3>
+        <ul>
+          <li>Engenharia de Software — Uninter</li>
+          <li>Git e GitHub — Uninter</li>
+          <li>Banco de Dados — Fund. Bradesco</li>
+          <li>Python — Udemy (Luiz Otávio)</li>
+          <li>Java — Udemy (Nélio Alves)</li>
+          <li>Imersões em Tecnologia — Alura</li>
+          <li>Android com Kotlin — Rocketseat</li>
+        </ul>
+      </div>
+      <div class="about-card">
+        <div class="card-icon icon-teal">⚡</div>
+        <h3>Interesses técnicos</h3>
+        <p>
+          Apaixonado por arquitetura de software limpa, automação de processos e APIs bem projetadas.
+          Exploro DevOps na prática e estou aprofundando conhecimentos em desenvolvimento
+          Android com Kotlin pela Rocketseat.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="projetos">
+    <p class="sec-eyebrow">projetos</p>
+    <h2>O que construí</h2>
+    <p class="sec-sub">Projetos com foco em boas práticas, usabilidade e soluções reais.</p>
+    <div class="projects">
+
+      <div class="project-card p-purple">
+        <div class="project-header">
+          <span class="project-title">Douglas Tech — Site Institucional</span>
+          <a class="project-badge badge-purple" href="https://noteddouglas.github.io/Site-bootstrap-p/" target="_blank">↗ ver projeto</a>
+        </div>
+        <p class="project-desc">
+          Site institucional da Douglas Tech, empresa de desenvolvimento web e APIs.
+          Construído com Bootstrap 5, foco em responsividade, performance e usabilidade.
+          Layout moderno com navegação fluida para clientes e parceiros de negócio.
+        </p>
+        <div class="project-tags">
+          <span class="ptag">HTML5</span>
+          <span class="ptag">CSS3</span>
+          <span class="ptag">Bootstrap 5</span>
+          <span class="ptag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="project-card p-teal">
+        <div class="project-header">
+          <span class="project-title">Vitrine de Tecnologias</span>
+          <a class="project-badge badge-teal" href="https://noteddouglas.github.io/Site_Tecnologias/" target="_blank">↗ ver projeto</a>
+        </div>
+        <p class="project-desc">
+          Site sem frameworks para apresentar visualmente o stack tecnológico estudado.
+          Layout responsivo com ícones personalizados, tags coloridas por categoria e
+          código 100% semântico. Demonstra domínio de HTML/CSS puro.
+        </p>
+        <div class="project-tags">
+          <span class="ptag">HTML5</span>
+          <span class="ptag">CSS3</span>
+          <span class="ptag">Sem framework</span>
+          <span class="ptag">Design responsivo</span>
+        </div>
+      </div>
+
+      <div class="project-card p-coral">
+        <div class="project-header">
+          <span class="project-title">Formulário de Vendas de Veículos</span>
+          <a class="project-badge badge-coral" href="https://noteddouglas.github.io/Formulario-Carros/" target="_blank">↗ ver projeto</a>
+        </div>
+        <p class="project-desc">
+          Formulário estruturado para coleta de dados em processos de venda de veículos.
+          Seleção de modelo, marca, ano, cor e opcionais com HTML semântico.
+          Foco em usabilidade, organização visual e acessibilidade.
+        </p>
+        <div class="project-tags">
+          <span class="ptag">HTML5</span>
+          <span class="ptag">CSS3</span>
+          <span class="ptag">UX</span>
+          <span class="ptag">Formulários</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contato" style="padding-bottom:clamp(56px,10vw,90px)">
+    <p class="sec-eyebrow">contato</p>
+    <h2>Vamos conversar?</h2>
+    <div class="contact-wrap">
+      <h3>Aberto a oportunidades</h3>
+      <p>Estágio, freelas ou projetos colaborativos — pode chegar!</p>
+      <div class="contact-links">
+        <a class="contact-link cl-purple" href="mailto:douglaspimentel9719@hotmail.com">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          E-mail
+        </a>
+        <a class="contact-link cl-blue" href="https://www.linkedin.com/in/douglas-pimentel-4058aa193/" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-link cl-gray" href="https://github.com/NotedDouglas" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a class="contact-link cl-green" href="https://wa.me/5535984715808" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2025 <span>♥</span> José Douglas Pimentel Rodrigues — Varginha, MG</p>
+  </div>
+</footer>
+
+<script>
+const btn = document.getElementById('hamburger');
+const menu = document.getElementById('mobile-menu');
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+});
+function closeMenu(){
+  btn.classList.remove('open');
+  menu.classList.remove('open');
+}
+document.addEventListener('click', e => {
+  if(!btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+});
+</script>
+</body>
+</html>
