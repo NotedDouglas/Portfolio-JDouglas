@@ -287,6 +287,42 @@ h2{
 .contact-link.cl-green:hover{border-color:rgba(74,222,128,0.4);color:var(--green)}
 .contact-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
 
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:14px}
+.exp-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:clamp(18px,3vw,26px);
+  position:relative;overflow:hidden;
+  transition:border-color 0.25s,transform 0.2s;
+}
+.exp-card::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
+  border-radius:3px 0 0 3px;
+}
+.exp-card.e-purple::before{background:linear-gradient(180deg,var(--purple),var(--purple-light))}
+.exp-card.e-teal::before{background:linear-gradient(180deg,var(--teal),#5eead4)}
+.exp-card.e-amber::before{background:linear-gradient(180deg,var(--amber),#fcd34d)}
+.exp-card.e-purple:hover{border-color:rgba(124,106,247,0.4);transform:translateY(-2px)}
+.exp-card.e-teal:hover{border-color:rgba(45,212,191,0.35);transform:translateY(-2px)}
+.exp-card.e-amber:hover{border-color:rgba(245,158,11,0.35);transform:translateY(-2px)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.exp-role{font-size:clamp(15px,2.5vw,17px);font-weight:600;letter-spacing:-0.01em}
+.exp-period{
+  font-family:'DM Mono',monospace;font-size:11px;
+  padding:4px 11px;border-radius:6px;border:1px solid;white-space:nowrap;flex-shrink:0;
+}
+.period-purple{background:var(--purple-dim);border-color:rgba(124,106,247,0.25);color:var(--purple-light)}
+.period-teal{background:var(--teal-dim);border-color:rgba(45,212,191,0.2);color:var(--teal)}
+.period-amber{background:var(--amber-dim);border-color:rgba(245,158,11,0.2);color:var(--amber)}
+.exp-company{font-size:13px;color:var(--muted);margin-bottom:12px;font-family:'DM Mono',monospace}
+.exp-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:7px}
+.exp-tag{
+  font-family:'DM Mono',monospace;font-size:11px;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--faint);padding:4px 10px;border-radius:5px;
+}
+
 footer{
   padding:28px 0;border-top:1px solid var(--border);
   text-align:center;position:relative;z-index:1;
@@ -323,9 +359,10 @@ footer span{color:var(--purple);margin:0 4px}
     <span class="nav-logo">douglas.dev</span>
     <div class="nav-links">
       <a href="#sobre">Sobre</a>
+      <a href="#experiencia">Experiência</a>
       <a href="#projetos">Projetos</a>
       <a href="#contato">Contato</a>
-      <a href="curriculo/Curriculo_Jose_Douglas.pdf" target="_blank">Currículo</a>
+      <a href="curriculo/Currículo --- Jose Douglas Pimentel Rodrigues.pdf" target="_blank">Currículo</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -335,9 +372,10 @@ footer span{color:var(--purple);margin:0 4px}
 
 <div class="mobile-menu" id="mobile-menu">
   <a href="#sobre" onclick="closeMenu()">Sobre</a>
+  <a href="#experiencia" onclick="closeMenu()">Experiência</a>
   <a href="#projetos" onclick="closeMenu()">Projetos</a>
   <a href="#contato" onclick="closeMenu()">Contato</a>
-  <a href="curriculo/Curriculo_Jose_Douglas.pdf" target="_blank" onclick="closeMenu()">Currículo ↗</a>
+  <a href="curriculo/Currículo --- Jose Douglas Pimentel Rodrigues.pdf" target="_blank" onclick="closeMenu()">Currículo ↗</a>
 </div>
 
 <div class="container">
@@ -358,7 +396,7 @@ footer span{color:var(--purple);margin:0 4px}
     </p>
     <div class="hero-actions">
       <a href="#contato"><button class="btn-primary">Entrar em contato</button></a>
-      <a href="curriculo/Curriculo_Jose_Douglas.pdf" target="_blank"><button class="btn-ghost">Ver currículo ↗</button></a>
+      <a href="curriculo/Currículo --- Jose Douglas Pimentel Rodrigues.pdf" target="_blank"><button class="btn-ghost">Ver currículo ↗</button></a>
     </div>
     <div class="stack-grid">
       <span class="tag purple">Java</span>
@@ -404,6 +442,71 @@ footer span{color:var(--purple);margin:0 4px}
           Android com Kotlin pela Rocketseat.
         </p>
       </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="experiencia">
+    <p class="sec-eyebrow">experiência</p>
+    <h2>Trajetória profissional</h2>
+    <p class="sec-sub">Experiências que moldaram minha visão técnica e profissional.</p>
+    <div class="exp-list">
+
+      <div class="exp-card e-purple">
+        <div class="exp-header">
+          <span class="exp-role">Assistente Administrativo & Suporte Técnico</span>
+          <span class="exp-period period-purple">Set/2025 — Atual</span>
+        </div>
+        <p class="exp-company">GVS3 Segurança</p>
+        <p class="exp-desc">
+          Suporte técnico ao sistema PerformanceLab: criação de acessos, tratamento de erros e geração de QR Codes para rondas.
+          Gestão de frota, pedidos de compra e controle de cartões de abastecimento. Elaboração de relatórios e dashboards em Excel, PowerPoint e Power BI.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">Power BI</span>
+          <span class="exp-tag">Excel</span>
+          <span class="exp-tag">Suporte técnico</span>
+          <span class="exp-tag">PowerPoint</span>
+          <span class="exp-tag">Gestão de sistemas</span>
+        </div>
+      </div>
+
+      <div class="exp-card e-teal">
+        <div class="exp-header">
+          <span class="exp-role">Porteiro</span>
+          <span class="exp-period period-teal">Jan/2021 — Jul/2025</span>
+        </div>
+        <p class="exp-company">MGS</p>
+        <p class="exp-desc">
+          Controle de acesso de visitantes e funcionários, monitoramento da segurança, registro de ocorrências
+          e apoio em situações de emergência. Responsabilidade, organização e atenção ao protocolo.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">Controle de acesso</span>
+          <span class="exp-tag">Registro de ocorrências</span>
+          <span class="exp-tag">Organização</span>
+        </div>
+      </div>
+
+      <div class="exp-card e-amber">
+        <div class="exp-header">
+          <span class="exp-role">Secretário Executivo</span>
+          <span class="exp-period period-amber">Jul/2016 — Dez/2018</span>
+        </div>
+        <p class="exp-company">MGS</p>
+        <p class="exp-desc">
+          Suporte administrativo a executivos, gestão de agendas, atendimento a clientes, organização de documentos,
+          elaboração de relatórios e apoio em projetos estratégicos.
+        </p>
+        <div class="exp-tags">
+          <span class="exp-tag">Gestão de agenda</span>
+          <span class="exp-tag">Relatórios</span>
+          <span class="exp-tag">Atendimento</span>
+          <span class="exp-tag">Documentação</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
